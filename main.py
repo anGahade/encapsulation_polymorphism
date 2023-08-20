@@ -1,26 +1,32 @@
 """
-Напишіть клас "Person", який має властивості name (ім'я) і age (вік).
-Зробіть ці властивості приватними, щоб вони не могли бути змінені напряму ззовні класу.
-Забезпечте методи для доступу до цих властивостей та встановлення їх значень.
+Розширте клас "Person" з попереднього завдання, додавши методи для зміни значень імені та віку.
+Зробіть так, щоб ім'я не могло містити цифр, а вік був обмежений в діапазоні від 0 до 120.
+При спробі встановити недійсне значення, виведіть повідомлення про помилку.
 """
 
 
 class Person:
 
-    def __int__(self, name, age):
+    def __init__(self, name=None, age=None):
         self.__name = name
         self.__age = age
 
     def set_name(self, name):
-        self.__name = name
-        return name
+        if name.isalpha():
+            self.__name = name
+            return name
+        else:
+            return "І'мя повинно складатись лише з літер!"
 
     def get_name(self):
         return self.__name
 
     def set_age(self, age):
-        self.__age = age
-        return age
+        if 0 < age < 120:
+            self.__age = age
+            return age
+        else:
+            return "Вкажіть справжній вік"
 
     def get_age(self):
         return self.__age
@@ -32,4 +38,5 @@ person.set_age(25)
 print(person.get_name())
 print(person.get_age())
 
-        
+print(person.set_name("John23"))
+print(person.set_age(-9))
