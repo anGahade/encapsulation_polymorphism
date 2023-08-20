@@ -1,7 +1,9 @@
 """
-Розширте клас "Rectangle" з попереднього завдання, перевизначивши метод display_color().
-В методі display_color() виведіть повідомлення про колір прямокутника
-і додайте також виведення повідомлення про його розміри (ширину і висоту)
+Розробіть клас "Square", який успадковує властивості і методи з класу "Rectangle".
+Додайте властивість side_length (довжина сторони) і перевизначте методи,
+які використовують властивості width і height класу "Rectangle",
+щоб вони використовували властивість side_length класу "Square".
+Виведіть значення ширини, висоти і довжини сторони для об'єкта класу "Square".
 """
 
 
@@ -20,8 +22,8 @@ class Rectangle(Shape):
         self.height = height
 
     def display_color(self):
-        # super().display_color()
-        return print(f"Color: {self.color}, Width: {self.width}, Height: {self.height}")
+        super().display_color()
+        # return print(f"Color: {self.color}, Width: {self.width}, Height: {self.height}")
 
     def width(self):
         return self.width()
@@ -30,7 +32,20 @@ class Rectangle(Shape):
         return self.height()
 
 
-rectangle = Rectangle("Blue", 10, 5)
-rectangle.display_color() # Виведе "Color: Blue, Width: 10, Height: 5"
+class Square(Rectangle):
+    def __init__(self, color, side_length):
+        super().__init__(color, side_length, side_length)
+        self.side_length = side_length
+
+    def get_side_length(self):
+        return self.side_length
+
+
+square = Square("Green", 8)
+square.display_color() # Виведе "Color: Green"
+print(square.width) # Виведе 8
+print(square.height) # Виведе 8
+print(square.side_length) # Виведе 8
+
 
 
