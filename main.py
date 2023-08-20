@@ -7,7 +7,7 @@
 
 class Person:
 
-    def __int__(self, name, age):
+    def __init__(self, name, age):
         self.__name = name
         self.__age = age
 
