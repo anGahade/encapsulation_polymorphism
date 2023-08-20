@@ -1,51 +1,58 @@
-"""
-Розробіть клас "Square", який успадковує властивості і методи з класу "Rectangle".
-Додайте властивість side_length (довжина сторони) і перевизначте методи,
-які використовують властивості width і height класу "Rectangle",
-щоб вони використовували властивість side_length класу "Square".
-Виведіть значення ширини, висоти і довжини сторони для об'єкта класу "Square".
-"""
+class Animal:
+    def __init__(self, name, species):
+        self.species = species
+        self.name = name
+
+    def display_info(self):
+        return print(f"Animal: {self.name}\nSpecies: {self.species}")
 
 
-class Shape:
-    def __init__(self, color):
-        self.color = color
+class Mammal(Animal):
+    def __init__(self, name, species, diet_type):
+        super().__init__(name, species)
+        self.diet_type = diet_type
 
-    def display_color(self):
-        return print(f"Color: {self.color}")
-
-
-class Rectangle(Shape):
-    def __init__(self, color, width, height):
-        super().__init__(color)
-        self.width = width
-        self.height = height
-
-    def display_color(self):
-        super().display_color()
-        # return print(f"Color: {self.color}, Width: {self.width}, Height: {self.height}")
-
-    def width(self):
-        return self.width()
-
-    def height(self):
-        return self.height()
+    def display_info(self):
+        return print(f"Animal: {self.name}\nSpecies: {self.species}\nDiet type: {self.diet_type}")
 
 
-class Square(Rectangle):
-    def __init__(self, color, side_length):
-        super().__init__(color, side_length, side_length)
-        self.side_length = side_length
+class Carnivore(Mammal):
+    def __init__(self, name, species, diet_type, teeth_count):
+        super().__init__(name, species, diet_type)
+        self.teeth_count = teeth_count
 
-    def get_side_length(self):
-        return self.side_length
-
-
-square = Square("Green", 8)
-square.display_color() # Виведе "Color: Green"
-print(square.width) # Виведе 8
-print(square.height) # Виведе 8
-print(square.side_length) # Виведе 8
+    def display_info(self):
+        return print(
+            f"Animal: {self.name}\n"
+            f"Species: {self.species}\n"
+            f"Diet type: {self.diet_type}\n"
+            f"Teeth count: {self.teeth_count}"
+                     )
 
 
+class Lion(Carnivore):
+    def __init__(self, name, species, diet_type, teeth_count, mane_size):
+        super().__init__(name, species, diet_type, teeth_count)
+        self.mane_size = mane_size
 
+    def display_info(self):
+        return print(
+            f"Animal: {self.name}\n"
+            f"Species: {self.species}\n"
+            f"Diet type: {self.diet_type}\n"
+            f"Teeth count: {self.teeth_count}\n"
+            f"Mane size: {self.mane_size}"
+                     )
+
+
+lion = Lion("Simba", "Lion", "Carnivore", 30, "Large")
+carnivore = Carnivore("Tiger", "Carnivore", "Carnivore", 40)
+mammal = Mammal("Elephant", "Mammal", "Herbivore")
+animal = Animal("Cat", "Cat")
+animal.display_info()
+print(30*"-")
+mammal.display_info()
+print(30*"-")
+carnivore.display_info()
+print(30*"-")
+lion.display_info()
