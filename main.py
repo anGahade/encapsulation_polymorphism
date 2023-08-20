@@ -38,5 +38,5 @@ person.set_age(25)
 print(person.get_name())
 print(person.get_age())
 
-print(person.set_name("John23"))
+print(person.set_name("John43"))
 print(person.set_age(-9))
