@@ -1,42 +1,44 @@
 """
-Розширте клас "Person" з попереднього завдання, додавши методи для зміни значень імені та віку.
-Зробіть так, щоб ім'я не могло містити цифр, а вік був обмежений в діапазоні від 0 до 120.
-При спробі встановити недійсне значення, виведіть повідомлення про помилку.
+Розробіть клас "Car", який містить такі властивості:
+make (марка автомобіля), model (модель автомобіля), year (рік випуску автомобіля) і mileage (пробіг автомобіля).
+Забезпечте можливість доступу до цих властивостей через методи, а також зробіть властивості "make" і "model" приватними.
+Додайте метод "drive" до класу "Car", який збільшує пробіг автомобіля на задане значення.
+Перевірте, чи не перевищує пробіг заданий ліміт (наприклад, 300 000 км),
+і виведіть повідомлення про досягнення ліміту при спробі здійснити поїздку.
 """
 
 
-class Person:
+class Car:
+    def __init__(self, make, model, year, mileage):
+        self.__make = make
+        self.__model = model
+        self.year = year
+        self.mileage = mileage
 
-    def __init__(self, name=None, age=None):
-        self.__name = name
-        self.__age = age
+    def get_make(self):
+        return self.__make
 
-    def set_name(self, name):
-        if name.isalpha():
-            self.__name = name
-            return name
+    def get_model(self):
+        return self.__model
+
+    def get_year(self):
+        return self.year
+
+    def get_mileage(self):
+        return self.mileage
+
+    def drive(self, miles_driven):
+        self.mileage = self.mileage + miles_driven
+        if self.mileage >= 250000:
+            print(f"Бобик сдох, далі не поїду, дзвони у сервіс, бо мій пробіг вже: {self.mileage} км")
         else:
-            return "І'мя повинно складатись лише з літер!"
-
-    def get_name(self):
-        return self.__name
-
-    def set_age(self, age):
-        if 0 < age < 120:
-            self.__age = age
-            return age
-        else:
-            return "Вкажіть справжній вік"
-
-    def get_age(self):
-        return self.__age
+            print(f"Загальний пробіг становить: {self.mileage} км")
 
 
-person = Person()
-person.set_name("John")
-person.set_age(25)
-print(person.get_name())
-print(person.get_age())
-
-print(person.set_name("John43"))
-print(person.set_age(-9))
+car = Car("Toyota", "Camry", 2020, 5000)
+print(car.get_make()) # Виведе "Toyota"
+print(car.get_model()) # Виведе "Camry"
+print(car.get_year()) # Виведе 2020
+print(car.get_mileage()) # Виведе 5000
+car.drive(100) # Збільшення пробігу на 100
+car.drive(300000000) # Виведе повідомлення про досягнення ліміту
