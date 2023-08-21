@@ -1,58 +1,54 @@
-class Animal:
-    def __init__(self, name, species):
-        self.species = species
-        self.name = name
+from abc import ABC, abstractmethod
+
+
+class Car(ABC):
+    @abstractmethod
+    def __init__(self, model, brand):
+        self.model = model
+        self.brand = brand
+
+    @abstractmethod
+    def display_info(self):
+        pass
+
+
+class Sedan(Car):
+    def __init__(self, model, brand, doors_count):
+        super().__init__(model, brand)
+        self.doors_count = doors_count
 
     def display_info(self):
-        return print(f"Animal: {self.name}\nSpecies: {self.species}")
+        return print(f"Car: {self.model} {self.brand}\n"
+                     f"Doors: {self.doors_count}")
 
 
-class Mammal(Animal):
-    def __init__(self, name, species, diet_type):
-        super().__init__(name, species)
-        self.diet_type = diet_type
-
-    def display_info(self):
-        return print(f"Animal: {self.name}\nSpecies: {self.species}\nDiet type: {self.diet_type}")
-
-
-class Carnivore(Mammal):
-    def __init__(self, name, species, diet_type, teeth_count):
-        super().__init__(name, species, diet_type)
-        self.teeth_count = teeth_count
+class SUV(Car):
+    def __init__(self, model, brand, passenger_seats):
+        super().__init__(model, brand)
+        self.passenger_seats = passenger_seats
 
     def display_info(self):
-        return print(
-            f"Animal: {self.name}\n"
-            f"Species: {self.species}\n"
-            f"Diet type: {self.diet_type}\n"
-            f"Teeth count: {self.teeth_count}"
-                     )
+        return print(f"Car: {self.model} {self.brand}\n"
+                     f"Seats: {self.passenger_seats}")
 
 
-class Lion(Carnivore):
-    def __init__(self, name, species, diet_type, teeth_count, mane_size):
-        super().__init__(name, species, diet_type, teeth_count)
-        self.mane_size = mane_size
+class SportsCar(Car):
+    def __init__(self, model, brand, max_speed):
+        super().__init__(model, brand)
+        self.max_speed = max_speed
 
     def display_info(self):
-        return print(
-            f"Animal: {self.name}\n"
-            f"Species: {self.species}\n"
-            f"Diet type: {self.diet_type}\n"
-            f"Teeth count: {self.teeth_count}\n"
-            f"Mane size: {self.mane_size}"
-                     )
+        return print(f"Car: {self.model} {self.brand}\n"
+                     f"Max Speed: {self.max_speed} km/h")
 
 
-lion = Lion("Simba", "Lion", "Carnivore", 30, "Large")
-carnivore = Carnivore("Tiger", "Carnivore", "Carnivore", 40)
-mammal = Mammal("Elephant", "Mammal", "Herbivore")
-animal = Animal("Cat", "Cat")
-animal.display_info()
-print(30*"-")
-mammal.display_info()
-print(30*"-")
-carnivore.display_info()
-print(30*"-")
-lion.display_info()
+sedan = Sedan("Toyota", "Camry", 4)
+suv = SUV("Ford", "Explorer", 7)
+sports_car = SportsCar("Ferrari", "488 GTB", 330)
+
+sedan.display_info()
+print(35*"-")
+suv.display_info()
+print(35*"-")
+sports_car.display_info()
+print(35*"-")
